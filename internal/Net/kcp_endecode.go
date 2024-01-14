@@ -4,9 +4,9 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 
-	"github.com/gucooing/hkrpg-go/pkg/endec"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/pkg/endec"
+	"hkrpg/pkg/logger"
 )
 
 // sr游戏协议编解码

@@ -1,12 +1,14 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 	"strconv"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type RelicExpType struct {
@@ -17,11 +19,16 @@ type RelicExpType struct {
 
 func (g *GameDataConfig) loadRelicExpType() {
 	g.RelicExpTypeMap = make(map[string]map[string]*RelicExpType)
-	playerElementsFilePath := g.excelPrefix + "RelicExpType.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "RelicExpType.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.RelicExpType)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get RelicExpType error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.RelicExpTypeMap)

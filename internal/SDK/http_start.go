@@ -9,9 +9,9 @@ import (
 	"sync"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gucooing/hkrpg-go/internal/DataBase"
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
+	"hkrpg/internal/DataBase"
+	"hkrpg/pkg/config"
+	"hkrpg/pkg/logger"
 )
 
 type Server struct {

@@ -1,12 +1,14 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"math/rand"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type LoadingDesc struct {
@@ -19,11 +21,16 @@ type LoadingDesc struct {
 
 func (g *GameDataConfig) loadLoadingDesc() {
 	g.LoadingDescMap = make(map[string]*LoadingDesc)
-	playerElementsFilePath := g.excelPrefix + "LoadingDesc.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "LoadingDesc.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.LoadingDesc)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get LoadingDesc error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.LoadingDescMap)

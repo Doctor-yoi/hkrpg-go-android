@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type ActivityScheduling struct {
@@ -17,13 +19,17 @@ type ActivityScheduling struct {
 
 func (g *GameDataConfig) loadActivityScheduling() {
 	g.ActivitySchedulingMap = make([]*ActivityScheduling, 0)
-	playerElementsFilePath := g.dataPrefix + "ActivityScheduling.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.dataPrefix + "ActivityScheduling.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.ActivityScheduling)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ActivityScheduling error")
+		os.Exit(-1)
 	}
-
 	err = hjson.Unmarshal(playerElementsFile, &g.ActivitySchedulingMap)
 	if err != nil {
 		info := fmt.Sprintf("parse file error: %v", err)

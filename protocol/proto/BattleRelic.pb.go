@@ -27,7 +27,7 @@ type BattleRelic struct {
 
 	Id           uint32        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Level        uint32        `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
-	MainAffixId  uint32        `protobuf:"varint,3,opt,name=main_affix_id,json=mainAffixId,proto3" json:"main_affix_id,omitempty"`
+	MainAffixId  uint32        `protobuf:"varint,3,opt,name=main_affix_id,json=mainAffixId,proto3" json:"hkrpg_affix_id,omitempty"`
 	SubAffixList []*RelicAffix `protobuf:"bytes,4,rep,name=sub_affix_list,json=subAffixList,proto3" json:"sub_affix_list,omitempty"`
 	UniqueId     uint32        `protobuf:"varint,5,opt,name=unique_id,json=uniqueId,proto3" json:"unique_id,omitempty"`
 }

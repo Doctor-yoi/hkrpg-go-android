@@ -28,7 +28,7 @@ type Item struct {
 	ItemId      uint32 `protobuf:"varint,13,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
 	Level       uint32 `protobuf:"varint,6,opt,name=level,proto3" json:"level,omitempty"`
 	Num         uint32 `protobuf:"varint,4,opt,name=num,proto3" json:"num,omitempty"`
-	MainAffixId uint32 `protobuf:"varint,11,opt,name=main_affix_id,json=mainAffixId,proto3" json:"main_affix_id,omitempty"`
+	MainAffixId uint32 `protobuf:"varint,11,opt,name=main_affix_id,json=mainAffixId,proto3" json:"hkrpg_affix_id,omitempty"`
 	Rank        uint32 `protobuf:"varint,15,opt,name=rank,proto3" json:"rank,omitempty"`
 	Promotion   uint32 `protobuf:"varint,8,opt,name=promotion,proto3" json:"promotion,omitempty"`
 	UniqueId    uint32 `protobuf:"varint,5,opt,name=unique_id,json=uniqueId,proto3" json:"unique_id,omitempty"`

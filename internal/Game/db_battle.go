@@ -3,8 +3,8 @@
 package Game
 
 import (
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 type BattleState struct {

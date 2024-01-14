@@ -1,12 +1,14 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 	"strconv"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type ChallengeTargetConfig struct {
@@ -18,11 +20,16 @@ type ChallengeTargetConfig struct {
 
 func (g *GameDataConfig) loadChallengeTargetConfig() {
 	g.ChallengeTargetConfigMap = make(map[string]*ChallengeTargetConfig)
-	playerElementsFilePath := g.excelPrefix + "ChallengeTargetConfig.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "ChallengeTargetConfig.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.ChallengeTargetConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ChallengeTargetConfig error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.ChallengeTargetConfigMap)

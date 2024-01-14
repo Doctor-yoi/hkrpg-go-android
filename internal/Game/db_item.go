@@ -5,10 +5,10 @@ import (
 	"math/rand"
 	"strconv"
 
-	"github.com/gucooing/hkrpg-go/gdconf"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	"hkrpg/gdconf"
+	"hkrpg/protocol/cmd"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 type Material struct {

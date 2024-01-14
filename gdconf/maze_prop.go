@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type MazeProp struct {
@@ -25,11 +27,16 @@ type MazeProp struct {
 
 func (g *GameDataConfig) loadMazeProp() {
 	g.MazePropMap = make(map[string]*MazeProp)
-	playerElementsFilePath := g.excelPrefix + "MazeProp.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "MazeProp.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.MazeProps)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get MazeProp error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.MazePropMap)

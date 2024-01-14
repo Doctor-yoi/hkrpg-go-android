@@ -4,9 +4,9 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gucooing/hkrpg-go/internal/Net"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/internal/Net"
+	"hkrpg/pkg/logger"
 )
 
 func InitRouter(c *gin.Context) {

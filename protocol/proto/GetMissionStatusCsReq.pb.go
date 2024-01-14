@@ -27,7 +27,7 @@ type GetMissionStatusCsReq struct {
 
 	SubMissionIdList   []uint32 `protobuf:"varint,13,rep,packed,name=sub_mission_id_list,json=subMissionIdList,proto3" json:"sub_mission_id_list,omitempty"`
 	MissionEventIdList []uint32 `protobuf:"varint,9,rep,packed,name=mission_event_id_list,json=missionEventIdList,proto3" json:"mission_event_id_list,omitempty"`
-	MainMissionIdList  []uint32 `protobuf:"varint,14,rep,packed,name=main_mission_id_list,json=mainMissionIdList,proto3" json:"main_mission_id_list,omitempty"`
+	MainMissionIdList  []uint32 `protobuf:"varint,14,rep,packed,name=main_mission_id_list,json=mainMissionIdList,proto3" json:"hkrpg_mission_id_list,omitempty"`
 }
 
 func (x *GetMissionStatusCsReq) Reset() {

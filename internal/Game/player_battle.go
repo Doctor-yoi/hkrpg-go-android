@@ -4,11 +4,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gucooing/hkrpg-go/gdconf"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	"hkrpg/gdconf"
+	"hkrpg/pkg/logger"
+	"hkrpg/protocol/cmd"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 /***********************************大世界攻击事件处理***********************************/

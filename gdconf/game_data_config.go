@@ -1,22 +1,19 @@
 package gdconf
 
 import (
-	"fmt"
-	"os"
 	"runtime"
 	"time"
 
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
+	"hkrpg/pkg/logger"
 )
 
 var CONF *GameDataConfig = nil
 
 type GameDataConfig struct {
 	// 配置表路径前缀
-	excelPrefix  string
-	configPrefix string
-	dataPrefix   string
+	//excelPrefix  string
+	//configPrefix string
+	//dataPrefix   string
 	// 配置表数据
 	AvatarDataMap               map[string]*AvatarData                          // 角色
 	AvatarExpItemConfigMap      map[string]*AvatarExpItemConfig                 // 角色升级经验材料配置
@@ -81,37 +78,43 @@ func InitGameDataConfig() {
 }
 
 func (g *GameDataConfig) loadAll() {
-	pathPrefix := config.GetConfig().GameDataConfigPath
-
-	dirInfo, err := os.Stat(pathPrefix)
-	if err != nil || !dirInfo.IsDir() {
-		info := fmt.Sprintf("open game data config dir error: %v", err)
-		panic(info)
-	}
-
-	g.excelPrefix = pathPrefix + "/ExcelOutput"
-	dirInfo, err = os.Stat(g.excelPrefix)
-	if err != nil || !dirInfo.IsDir() {
-		info := fmt.Sprintf("open game data config ExcelOutput dir error: %v", err)
-		panic(info)
-	}
-	g.excelPrefix += "/"
-
-	g.configPrefix = pathPrefix + "/Config"
-	dirInfo, err = os.Stat(g.configPrefix)
-	if err != nil || !dirInfo.IsDir() {
-		info := fmt.Sprintf("open game data config Config dir error: %v", err)
-		panic(info)
-	}
-	g.configPrefix += "/"
-
-	g.dataPrefix = "data"
-	dirInfo, err = os.Stat(g.dataPrefix)
-	if err != nil || !dirInfo.IsDir() {
-		info := fmt.Sprintf("open game data config data dir error: %v", err)
-		panic(info)
-	}
-	g.dataPrefix += "/"
+	//pathPrefix := config.GetConfig().GameDataConfigPath
+	//
+	//resourcesPrefix := "/resources"
+	//
+	//dirInfo, err := os.Stat(pathPrefix)
+	//if err != nil || !dirInfo.IsDir() {
+	//	_ = fmt.Sprintf("open game data config dir error: %v", err)
+	//	return
+	//	//panic(info)
+	//}
+	//
+	//g.excelPrefix = pathPrefix + resourcesPrefix + "/ExcelOutput"
+	//dirInfo, err = os.Stat(g.excelPrefix)
+	//if err != nil || !dirInfo.IsDir() {
+	//	_ = fmt.Sprintf("open game data config ExcelOutput dir error: %v", err)
+	//	return
+	//	//panic(info)
+	//}
+	//g.excelPrefix += "/"
+	//
+	//g.configPrefix = pathPrefix + resourcesPrefix + "/Config"
+	//dirInfo, err = os.Stat(g.configPrefix)
+	//if err != nil || !dirInfo.IsDir() {
+	//	_ = fmt.Sprintf("open game data config Config dir error: %v", err)
+	//	return
+	//	//panic(info)
+	//}
+	//g.configPrefix += "/"
+	//
+	//g.dataPrefix = pathPrefix + "/GameData"
+	//dirInfo, err = os.Stat(g.dataPrefix)
+	//if err != nil || !dirInfo.IsDir() {
+	//	_ = fmt.Sprintf("open game data config data dir error: %v", err)
+	//	return
+	//	//panic(info)
+	//}
+	//g.dataPrefix += "/"
 
 	g.load()
 }

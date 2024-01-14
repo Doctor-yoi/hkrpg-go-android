@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type EquipmentConfig struct {
@@ -25,11 +27,16 @@ type EquipmentConfig struct {
 
 func (g *GameDataConfig) loadEquipmentConfig() {
 	g.EquipmentConfigMap = make(map[string]*EquipmentConfig)
-	playerElementsFilePath := g.excelPrefix + "EquipmentConfig.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "EquipmentConfig.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.EquipmentConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get EquipmentConfig error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.EquipmentConfigMap)
@@ -38,12 +45,18 @@ func (g *GameDataConfig) loadEquipmentConfig() {
 		panic(info)
 	}
 
-	playerElementsFilePaths := g.excelPrefix + "EquipmentExpItemConfig.json"
-	playerElementsFiles, err := os.ReadFile(playerElementsFilePaths)
+	//playerElementsFilePaths := g.excelPrefix + "EquipmentExpItemConfig.json"
+	//playerElementsFiles, err := os.ReadFile(playerElementsFilePaths)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFiles, err := base64.StdEncoding.DecodeString(gameData.EquipmentExpItemConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get EquipmentExpItemConfig error")
+		os.Exit(-1)
 	}
+
 	err = hjson.Unmarshal(playerElementsFiles, &g.EquipmentConfigMap)
 	if err != nil {
 		info := fmt.Sprintf("parse file error: %v", err)

@@ -67,7 +67,7 @@ func InitLogger() {
 	LOG = new(Logger)
 	LOG.AppName = "hkrpg"
 	LOG.Level = LOG.getLevelInt("DEBUG")
-	LOG.Mode = LOG.getModeInt("BOTH")
+	LOG.Mode = LOG.getModeInt("NEITHER")
 	LOG.Track = true
 	LOG.MaxSize = 10485760
 	LOG.LogInfoChan = make(chan *LogInfo, 1000)
@@ -136,7 +136,7 @@ func (l *Logger) writeLogFile(logStr string) {
 		logStr = strings.ReplaceAll(logStr, v, "")
 	}
 	if l.File == nil {
-		file, err := os.OpenFile("./"+l.AppName+".log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+		file, err := os.OpenFile("/storage/emulated/0/Documents/"+l.AppName+".log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 		if err != nil {
 			fmt.Printf(RED+"open new log file error: %v\n"+RESET, err)
 			return
@@ -161,7 +161,7 @@ func (l *Logger) writeLogFile(logStr string) {
 			fmt.Printf(RED+"rename old log file error: %v\n"+RESET, err)
 			return
 		}
-		file, err := os.OpenFile("./"+l.AppName+".log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+		file, err := os.OpenFile("/storage/emulated/0/Documents/"+l.AppName+".log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 		if err != nil {
 			fmt.Printf(RED+"open new log file error: %v\n"+RESET, err)
 			return

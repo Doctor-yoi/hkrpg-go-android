@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type ChallengeMazeConfig struct {
@@ -41,11 +43,16 @@ type ChallengeState struct {
 
 func (g *GameDataConfig) loadChallengeMazeConfig() {
 	g.ChallengeMazeConfigMap = make(map[string]*ChallengeMazeConfig)
-	playerElementsFilePath := g.excelPrefix + "ChallengeMazeConfig.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "ChallengeMazeConfig.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.ChallengeMazeConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ChallengeMazeConfi error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.ChallengeMazeConfigMap)
@@ -54,11 +61,16 @@ func (g *GameDataConfig) loadChallengeMazeConfig() {
 		panic(info)
 	}
 
-	playerElementsFilePathStory := g.excelPrefix + "ChallengeStoryMazeConfig.json"
-	playerElementsFileStory, err := os.ReadFile(playerElementsFilePathStory)
+	//playerElementsFilePathStory := g.excelPrefix + "ChallengeStoryMazeConfig.json"
+	//playerElementsFileStory, err := os.ReadFile(playerElementsFilePathStory)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileStory, err := base64.StdEncoding.DecodeString(gameData.ChallengeStoryMazeConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ChallengeStoryMazeConfig error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFileStory, &g.ChallengeMazeConfigMap)

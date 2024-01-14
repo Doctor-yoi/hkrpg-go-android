@@ -1,7 +1,7 @@
 package Game
 
 import (
-	"github.com/gucooing/hkrpg-go/gdconf"
+	"hkrpg/gdconf"
 )
 
 func (g *Game) AddTrailblazerExp(num uint32) {

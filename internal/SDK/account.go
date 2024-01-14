@@ -2,7 +2,7 @@ package SDK
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
+	"hkrpg/pkg/logger"
 )
 
 func (s *Server) RiskyApiCheckHandler(c *gin.Context) {

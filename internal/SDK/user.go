@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gucooing/hkrpg-go/internal/DataBase"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/pkg/random"
+	"hkrpg/internal/DataBase"
+	"hkrpg/pkg/logger"
+	"hkrpg/pkg/random"
 )
 
 var LoginOnce sync.Mutex

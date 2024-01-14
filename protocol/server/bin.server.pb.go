@@ -976,8 +976,8 @@ type LineUp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MainLineUp   uint32           `protobuf:"varint,1,opt,name=main_line_up,json=mainLineUp,proto3" json:"main_line_up,omitempty"`       // 当前上场队伍
-	MainAvatarId uint32           `protobuf:"varint,2,opt,name=main_avatar_id,json=mainAvatarId,proto3" json:"main_avatar_id,omitempty"` // 当前上场角色
+	MainLineUp   uint32           `protobuf:"varint,1,opt,name=main_line_up,json=mainLineUp,proto3" json:"hkrpg_line_up,omitempty"`       // 当前上场队伍
+	MainAvatarId uint32           `protobuf:"varint,2,opt,name=main_avatar_id,json=mainAvatarId,proto3" json:"hkrpg_avatar_id,omitempty"` // 当前上场角色
 	LineUpList   map[uint32]*Line `protobuf:"bytes,3,rep,name=line_up_list,json=lineUpList,proto3" json:"line_up_list,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
@@ -1177,7 +1177,7 @@ type Relic struct {
 	UniqueId     uint32        `protobuf:"varint,2,opt,name=unique_id,json=uniqueId,proto3" json:"unique_id,omitempty"` // 唯一ID
 	Exp          uint32        `protobuf:"varint,3,opt,name=exp,proto3" json:"exp,omitempty"`
 	Level        uint32        `protobuf:"varint,4,opt,name=level,proto3" json:"level,omitempty"`
-	MainAffixId  uint32        `protobuf:"varint,5,opt,name=main_affix_id,json=mainAffixId,proto3" json:"main_affix_id,omitempty"`    // 主词条
+	MainAffixId  uint32        `protobuf:"varint,5,opt,name=main_affix_id,json=mainAffixId,proto3" json:"hkrpg_affix_id,omitempty"`   // 主词条
 	RelicAffix   []*RelicAffix `protobuf:"bytes,6,rep,name=relic_affix,json=relicAffix,proto3" json:"relic_affix,omitempty"`          // 词条
 	BaseAvatarId uint32        `protobuf:"varint,7,opt,name=base_avatar_id,json=baseAvatarId,proto3" json:"base_avatar_id,omitempty"` // 装备角色
 	IsProtected  bool          `protobuf:"varint,8,opt,name=is_protected,json=isProtected,proto3" json:"is_protected,omitempty"`      // 是否锁定

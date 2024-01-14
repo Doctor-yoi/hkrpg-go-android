@@ -31,7 +31,7 @@ type Relic struct {
 	UniqueId     uint32        `protobuf:"varint,9,opt,name=unique_id,json=uniqueId,proto3" json:"unique_id,omitempty"`
 	Level        uint32        `protobuf:"varint,15,opt,name=level,proto3" json:"level,omitempty"`
 	IsProtected  bool          `protobuf:"varint,13,opt,name=is_protected,json=isProtected,proto3" json:"is_protected,omitempty"`
-	MainAffixId  uint32        `protobuf:"varint,4,opt,name=main_affix_id,json=mainAffixId,proto3" json:"main_affix_id,omitempty"`
+	MainAffixId  uint32        `protobuf:"varint,4,opt,name=main_affix_id,json=mainAffixId,proto3" json:"hkrpg_affix_id,omitempty"`
 	Exp          uint32        `protobuf:"varint,3,opt,name=exp,proto3" json:"exp,omitempty"`
 }
 

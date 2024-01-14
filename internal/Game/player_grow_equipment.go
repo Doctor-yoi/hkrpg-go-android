@@ -3,10 +3,10 @@ package Game
 import (
 	"strconv"
 
-	"github.com/gucooing/hkrpg-go/gdconf"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
+	"hkrpg/gdconf"
+	"hkrpg/pkg/logger"
+	"hkrpg/protocol/cmd"
+	"hkrpg/protocol/proto"
 )
 
 func (g *Game) DressAvatarCsReq(payloadMsg []byte) {

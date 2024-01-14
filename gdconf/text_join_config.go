@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type TextJoinConfig struct {
@@ -16,11 +18,16 @@ type TextJoinConfig struct {
 
 func (g *GameDataConfig) loadTextJoinConfig() {
 	g.TextJoinConfigMap = make(map[string]*TextJoinConfig)
-	playerElementsFilePath := g.excelPrefix + "TextJoinConfig.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "TextJoinConfig.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.TextJoinConfigs)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get TextJoinConfig error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.TextJoinConfigMap)

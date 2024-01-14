@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type AvatarData struct {
@@ -25,13 +27,17 @@ type RewardList struct {
 
 func (g *GameDataConfig) loadAvatarData() {
 	g.AvatarDataMap = make(map[string]*AvatarData)
-	playerElementsFilePath := g.excelPrefix + "AvatarConfig.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "AvatarConfig.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.AvatarData)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get AvatarData error")
+		os.Exit(-1)
 	}
-
 	err = hjson.Unmarshal(playerElementsFile, &g.AvatarDataMap)
 	if err != nil {
 		info := fmt.Sprintf("parse file error: %v", err)

@@ -10,15 +10,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gucooing/hkrpg-go/internal/Game"
-	"github.com/gucooing/hkrpg-go/pkg/alg"
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/kcp"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/pkg/random"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/internal/Game"
+	"hkrpg/pkg/alg"
+	"hkrpg/pkg/config"
+	"hkrpg/pkg/kcp"
+	"hkrpg/pkg/logger"
+	"hkrpg/pkg/random"
+	"hkrpg/protocol/cmd"
+	spb "hkrpg/protocol/server"
 )
 
 const (

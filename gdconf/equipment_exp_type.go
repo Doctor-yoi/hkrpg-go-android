@@ -1,12 +1,14 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 	"strconv"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type EquipmentExp struct {
@@ -17,11 +19,16 @@ type EquipmentExp struct {
 
 func (g *GameDataConfig) loadEquipmentExpType() {
 	g.EquipmentExpTypeMap = make(map[string]map[string]*EquipmentExp)
-	playerElementsFilePath := g.excelPrefix + "EquipmentExpType.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "EquipmentExpType.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.EquipmentExpType)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get EquipmentExpType error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.EquipmentExpTypeMap)

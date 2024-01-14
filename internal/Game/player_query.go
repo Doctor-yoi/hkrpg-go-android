@@ -1,9 +1,9 @@
 package Game
 
 import (
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	"hkrpg/protocol/cmd"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 func (g *Game) HandleQueryProductInfoCsReq(payloadMsg []byte) {

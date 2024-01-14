@@ -1,10 +1,10 @@
 package Net
 
 import (
-	"github.com/gucooing/hkrpg-go/internal/Game"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/internal/Game"
+	"hkrpg/pkg/logger"
+	"hkrpg/protocol/cmd"
 )
 
 type ProtoMsg struct {

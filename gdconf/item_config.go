@@ -1,11 +1,13 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type ItemList struct {
@@ -41,10 +43,15 @@ func (g *GameDataConfig) loadItemConfig() {
 	relicMap := make(map[uint32]*ItemConfig)
 
 	itemConfig := make(map[string]*ItemConfig)
-	playerElementsFileItemConfig, err := os.ReadFile(g.excelPrefix + "ItemConfig.json")
+	//playerElementsFileItemConfig, err := os.ReadFile(g.excelPrefix + "ItemConfig.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfig, err := base64.StdEncoding.DecodeString(gameData.ItemConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfig error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfig, &itemConfig)
 	if err != nil {
@@ -57,10 +64,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigAvatar, err := os.ReadFile(g.excelPrefix + "ItemConfigAvatar.json")
+	//playerElementsFileItemConfigAvatar, err := os.ReadFile(g.excelPrefix + "ItemConfigAvatar.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigAvatar, err := base64.StdEncoding.DecodeString(gameData.ItemConfigAvatar)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigAvatar error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigAvatar, &itemConfig)
 	if err != nil {
@@ -73,10 +85,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigAvatarPlayerIcon, err := os.ReadFile(g.excelPrefix + "ItemConfigAvatarPlayerIcon.json")
+	//playerElementsFileItemConfigAvatarPlayerIcon, err := os.ReadFile(g.excelPrefix + "ItemConfigAvatarPlayerIcon.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigAvatarPlayerIcon, err := base64.StdEncoding.DecodeString(gameData.ItemConfigAvatarPlayerIcon)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigAvatarPlayerIcon error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigAvatarPlayerIcon, &itemConfig)
 	if err != nil {
@@ -89,10 +106,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigAvatarRank, err := os.ReadFile(g.excelPrefix + "ItemConfigAvatarRank.json")
+	//playerElementsFileItemConfigAvatarRank, err := os.ReadFile(g.excelPrefix + "ItemConfigAvatarRank.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigAvatarRank, err := base64.StdEncoding.DecodeString(gameData.ItemConfigAvatarRank)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigAvatarRank error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigAvatarRank, &itemConfig)
 	if err != nil {
@@ -105,10 +127,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigBook, err := os.ReadFile(g.excelPrefix + "ItemConfigBook.json")
+	//playerElementsFileItemConfigBook, err := os.ReadFile(g.excelPrefix + "ItemConfigBook.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigBook, err := base64.StdEncoding.DecodeString(gameData.ItemConfigBook)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigBook error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigBook, &itemConfig)
 	if err != nil {
@@ -121,10 +148,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigDisk, err := os.ReadFile(g.excelPrefix + "ItemConfigDisk.json")
+	//playerElementsFileItemConfigDisk, err := os.ReadFile(g.excelPrefix + "ItemConfigDisk.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigDisk, err := base64.StdEncoding.DecodeString(gameData.ItemConfigDisk)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigDisk error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigDisk, &itemConfig)
 	if err != nil {
@@ -137,10 +169,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigEquipment, err := os.ReadFile(g.excelPrefix + "ItemConfigEquipment.json")
+	//playerElementsFileItemConfigEquipment, err := os.ReadFile(g.excelPrefix + "ItemConfigEquipment.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigEquipment, err := base64.StdEncoding.DecodeString(gameData.ItemConfigEquipment)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigEquipment error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigEquipment, &itemConfig)
 	if err != nil {
@@ -153,10 +190,15 @@ func (g *GameDataConfig) loadItemConfig() {
 
 	itemConfig = nil
 	itemConfig = make(map[string]*ItemConfig)
-	playerElementsFileItemConfigRelic, err := os.ReadFile(g.excelPrefix + "ItemConfigRelic.json")
+	//playerElementsFileItemConfigRelic, err := os.ReadFile(g.excelPrefix + "ItemConfigRelic.json")
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFileItemConfigRelic, err := base64.StdEncoding.DecodeString(gameData.ItemConfigRelic)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get ItemConfigRelic error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFileItemConfigRelic, &itemConfig)
 	if err != nil {

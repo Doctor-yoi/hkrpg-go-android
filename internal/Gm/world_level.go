@@ -2,7 +2,7 @@ package Gm
 
 import (
 	"github.com/gin-gonic/gin"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	spb "hkrpg/protocol/server"
 )
 
 func WorldLevel(c *gin.Context) {

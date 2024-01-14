@@ -4,13 +4,13 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/gucooing/hkrpg-go/internal/DataBase"
-	"github.com/gucooing/hkrpg-go/internal/Game"
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/pkg/random"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
+	"hkrpg/internal/DataBase"
+	"hkrpg/internal/Game"
+	"hkrpg/pkg/config"
+	"hkrpg/pkg/logger"
+	"hkrpg/pkg/random"
+	"hkrpg/protocol/cmd"
+	"hkrpg/protocol/proto"
 )
 
 var syncGD sync.Mutex

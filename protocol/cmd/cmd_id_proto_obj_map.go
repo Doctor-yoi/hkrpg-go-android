@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/pkg/logger"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 var sharedCmdProtoMap *CmdProtoMap

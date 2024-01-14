@@ -27,7 +27,7 @@ type ComposeSelectedRelicCsReq struct {
 
 	ComposeId       uint32        `protobuf:"varint,5,opt,name=compose_id,json=composeId,proto3" json:"compose_id,omitempty"`
 	ComposeItemList *ItemCostList `protobuf:"bytes,9,opt,name=compose_item_list,json=composeItemList,proto3" json:"compose_item_list,omitempty"`
-	MainAffixId     uint32        `protobuf:"varint,13,opt,name=main_affix_id,json=mainAffixId,proto3" json:"main_affix_id,omitempty"`
+	MainAffixId     uint32        `protobuf:"varint,13,opt,name=main_affix_id,json=mainAffixId,proto3" json:"hkrpg_affix_id,omitempty"`
 	ComposeRelicId  uint32        `protobuf:"varint,3,opt,name=compose_relic_id,json=composeRelicId,proto3" json:"compose_relic_id,omitempty"`
 	Count           uint32        `protobuf:"varint,11,opt,name=count,proto3" json:"count,omitempty"`
 }

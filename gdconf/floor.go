@@ -1,14 +1,16 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type LevelFloor struct {
@@ -29,21 +31,22 @@ type GroupList struct {
 
 func (g *GameDataConfig) loadFloor() {
 	g.FloorMap = make(map[uint32]map[uint32]*LevelFloor)
-	playerElementsFilePath := g.configPrefix + "LevelOutput/Floor"
-	files, err := scanFiles(playerElementsFilePath)
-	if err != nil {
-		logger.Error("error LevelOutput/Floor:", err)
-		return
-	}
+	//playerElementsFilePath := g.configPrefix + "LevelOutput/Floor"
+	//files, err := scanFiles(playerElementsFilePath)
+	//if err != nil {
+	//	logger.Error("error LevelOutput/Floor:", err)
+	//	return
+	//}
+	files := gameData.FloorList
 
-	for _, file := range files {
+	for fileName, fileContent := range files {
 		levelFloor := new(LevelFloor)
-		planeId, floorId := extractNumbersFloor(filepath.Base(file))
+		planeId, floorId := extractNumbersFloor(filepath.Base(fileName))
 
-		playerElementsFile, err := os.ReadFile(file)
+		playerElementsFile, err := base64.StdEncoding.DecodeString(fileContent)
 		if err != nil {
-			info := fmt.Sprintf("open file error: %v", err)
-			panic(info)
+			logger.Error("get LevelOutput/Floor error")
+			os.Exit(-1)
 		}
 
 		err = hjson.Unmarshal(playerElementsFile, levelFloor)

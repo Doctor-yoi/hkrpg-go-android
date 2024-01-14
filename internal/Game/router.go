@@ -1,9 +1,9 @@
 package Game
 
 import (
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/pkg/logger"
+	"hkrpg/protocol/cmd"
 )
 
 func (g *Game) RegisterMessage(cmdId uint16, payloadMsg []byte /*payloadMsg pb.Message*/) {

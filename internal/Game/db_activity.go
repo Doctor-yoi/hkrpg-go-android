@@ -1,7 +1,7 @@
 package Game
 
 import (
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	spb "hkrpg/protocol/server"
 )
 
 func (g *Game) GetActivity() *spb.Activity {

@@ -1,12 +1,14 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 	"strconv"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type Relic struct {
@@ -15,7 +17,7 @@ type Relic struct {
 	TypeS          string `json:"Type"`
 	Type           uint32
 	Rarity         string `json:"Rarity"` // 星级
-	MainAffixGroup uint32 `json:"MainAffixGroup"`
+	MainAffixGroup uint32 `json:"hkrpgAffixGroup"`
 	SubAffixGroup  uint32 `json:"SubAffixGroup"`
 	MaxLevel       uint32 `json:"MaxLevel"`
 	ExpType        uint32 `json:"ExpType"`
@@ -25,11 +27,16 @@ type Relic struct {
 
 func (g *GameDataConfig) loadRelic() {
 	g.RelicMap = make(map[string]*Relic)
-	playerElementsFilePath := g.excelPrefix + "RelicConfig.json"
-	playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//playerElementsFilePath := g.excelPrefix + "RelicConfig.json"
+	//playerElementsFile, err := os.ReadFile(playerElementsFilePath)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.RelicConfig)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get RelicConfig error")
+		os.Exit(-1)
 	}
 
 	err = hjson.Unmarshal(playerElementsFile, &g.RelicMap)
@@ -54,11 +61,16 @@ func (g *GameDataConfig) loadRelic() {
 		}
 	}
 
-	playerElementsFilePaths := g.excelPrefix + "RelicExpItem.json"
-	playerElementsFiles, err := os.ReadFile(playerElementsFilePaths)
+	//playerElementsFilePaths := g.excelPrefix + "RelicExpItem.json"
+	//playerElementsFiles, err := os.ReadFile(playerElementsFilePaths)
+	//if err != nil {
+	//	info := fmt.Sprintf("open file error: %v", err)
+	//	panic(info)
+	//}
+	playerElementsFiles, err := base64.StdEncoding.DecodeString(gameData.RelicExpItem)
 	if err != nil {
-		info := fmt.Sprintf("open file error: %v", err)
-		panic(info)
+		logger.Error("get RelicExpItem error")
+		os.Exit(-1)
 	}
 	err = hjson.Unmarshal(playerElementsFiles, &g.RelicMap)
 	if err != nil {

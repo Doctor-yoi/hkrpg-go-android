@@ -6,10 +6,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/pkg/config"
+	"hkrpg/pkg/logger"
+	"hkrpg/protocol/proto"
 )
 
 func (s *Server) QueryDispatchHandler(c *gin.Context) {

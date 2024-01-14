@@ -1,9 +1,9 @@
 package Game
 
 import (
-	"github.com/gucooing/hkrpg-go/gdconf"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
+	"hkrpg/gdconf"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 func (g *Game) GetScene() *spb.Scene {

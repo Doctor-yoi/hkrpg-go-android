@@ -1,4 +1,4 @@
-package main
+package hkrpg
 
 import (
 	"context"
@@ -10,27 +10,39 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gucooing/hkrpg-go/gdconf"
-	"github.com/gucooing/hkrpg-go/internal"
-	"github.com/gucooing/hkrpg-go/internal/Net"
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
+	"hkrpg/gdconf"
+	"hkrpg/internal"
+	"hkrpg/internal/Net"
+	"hkrpg/pkg/config"
+	"hkrpg/pkg/logger"
 )
 
-func main() {
+func Main(configStr string, useDatabase bool, mysqlDsn string) {
+	if configStr == "" {
+		configByte, _ := json.MarshalIndent(config.DefaultConfig, "", "  ")
+		configStr = string(configByte)
+	}
 	// 启动读取配置
-	err := config.LoadConfig()
+	err := config.LoadConfig(configStr)
 	if err != nil {
-		if err == config.FileNotExist {
-			p, _ := json.MarshalIndent(config.DefaultConfig, "", "  ")
-			cf, _ := os.Create("./config.json")
-			cf.Write(p)
-			cf.Close()
-			fmt.Printf("找不到配置文件\n已生成默认配置文件 config.json \n")
-			main()
-		} else {
-			panic(err)
-		}
+		//if err == config.FileNotExist {
+		//	p, _ := json.MarshalIndent(config.DefaultConfig, "", "  ")
+		//	cf, _ := os.Create("/storage/emulated/0/Documents/hkrpg-go/config.json")
+		//	cf.Write(p)
+		//	cf.Close()
+		//	fmt.Printf("找不到配置文件\n已生成默认配置文件 config.json \n")
+		//	Main(configStr, useDatabase)
+		//} else {
+		//	return
+		//}
+		fmt.Printf("加载配置文件时出错！请尝试重新编译！")
+		return
+	}
+	config.CONF.UseDatabase = useDatabase
+	if useDatabase {
+		config.CONF.MysqlDsn = mysqlDsn
+	} else {
+		config.CONF.MysqlDsn = ""
 	}
 	// 初始化日志
 	logger.InitLogger()

@@ -3,11 +3,11 @@ package Game
 import (
 	"time"
 
-	"github.com/gucooing/hkrpg-go/gdconf"
-	"github.com/gucooing/hkrpg-go/protocol/cmd"
-	"github.com/gucooing/hkrpg-go/protocol/proto"
-	spb "github.com/gucooing/hkrpg-go/protocol/server"
 	pb "google.golang.org/protobuf/proto"
+	"hkrpg/gdconf"
+	"hkrpg/protocol/cmd"
+	"hkrpg/protocol/proto"
+	spb "hkrpg/protocol/server"
 )
 
 func (g *Game) GmGive(payloadMsg pb.Message) {

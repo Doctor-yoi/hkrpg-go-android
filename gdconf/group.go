@@ -1,14 +1,16 @@
 package gdconf
 
 import (
+	"encoding/base64"
 	"fmt"
+	"hkrpg/gameData"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"github.com/hjson/hjson-go/v4"
+	"hkrpg/pkg/logger"
 )
 
 type LevelGroup struct {
@@ -89,21 +91,23 @@ type NPCList struct {
 
 func (g *GameDataConfig) loadGroup() {
 	g.GroupMap = make(map[uint32]map[uint32]map[uint32]*LevelGroup)
-	playerElementsFilePath := g.configPrefix + "LevelOutput/Group"
-	files, err := scanFiles(playerElementsFilePath)
-	if err != nil {
-		logger.Error("error LevelOutput/Group:", err)
-		return
-	}
+	//playerElementsFilePath := g.configPrefix + "LevelOutput/Group"
+	//files, err := scanFiles(playerElementsFilePath)
+	//if err != nil {
+	//	logger.Error("error LevelOutput/Group:", err)
+	//	return
+	//}
 
-	for _, file := range files {
+	files := gameData.GroupList //由于goland无法解析转译以后的gamedata因此在此给出GroupList的类型定义
+	// map[string]string
+	for fileName, fileContent := range files {
 		levelGroup := new(LevelGroup)
-		planeId, floorId, groupId := extractNumbers(filepath.Base(file))
+		planeId, floorId, groupId := extractNumbers(filepath.Base(fileName))
 
-		playerElementsFile, err := os.ReadFile(file)
+		playerElementsFile, err := base64.StdEncoding.DecodeString(fileContent)
 		if err != nil {
-			info := fmt.Sprintf("open file error: %v", err)
-			panic(info)
+			logger.Error("get LevelOutput/Group error")
+			os.Exit(-1)
 		}
 
 		err = hjson.Unmarshal(playerElementsFile, levelGroup)

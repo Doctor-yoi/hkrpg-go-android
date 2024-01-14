@@ -1,8 +1,8 @@
 package DataBase
 
 import (
-	"github.com/gucooing/hkrpg-go/pkg/config"
 	"gorm.io/gorm"
+	"hkrpg/pkg/config"
 )
 
 type Store struct {

@@ -3,11 +3,11 @@ package DataBase
 import (
 	"time"
 
-	"github.com/gucooing/hkrpg-go/pkg/config"
-	"github.com/gucooing/hkrpg-go/pkg/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
+	"hkrpg/pkg/config"
+	"hkrpg/pkg/logger"
 )
 
 var DBASE *Store
