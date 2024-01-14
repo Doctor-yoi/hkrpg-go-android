@@ -12,6 +12,7 @@ go.work
 test.go
 .idea/*
 cmake-build-*/
+gameData
 /gameData/GameData_b64.go
 /gameData/Resources_b64.go
 RobotConfig.json
