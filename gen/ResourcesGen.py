@@ -78,7 +78,7 @@ if __name__ == "__main__":
     print("!!!WARNING! DO NOT OPEN IT IN ANY CODE EDITOR!!!")
     startTime = time.perf_counter()
 
-    goCode = "///   Generate By ResourcesGen.py"
+    goCode = "///    Generate By ResourcesGen.py"
     goCode += "\n///    DO NOT EDIT!!!"
     goCode += "\n///    Generate Time: " + time.asctime(time.localtime())
     goCode += "\npackage gameData"
