@@ -9,9 +9,8 @@
 ### 使用方法：
 1. 拉取项目文件
 2. 创建resources目录，将下载的Data.zip解压到该目录
-3. 在项目根目录运行generateResources.bat
-4. 在项目根目录运行generateAarPackage.bat
-5. 导入主仓库根目录/app/libs，在Android Studio中编译apk
+3. 在项目根目录运行generateAarPackage.bat
+4. 导入主仓库根目录/app/libs，在Android Studio中编译apk
 
 ### 注：
 * 如果你想帮助此项目，欢迎提交
