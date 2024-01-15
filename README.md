@@ -2,9 +2,9 @@
 
 ### 必要条件：
 - go 1.20+
-- 安装gomobile
-- python3.9
-- Android Studio
+- gomobile latest
+- python 3.9+
+- Android Studio 2021+
 
 ### 使用方法：
 1. 拉取项目文件
