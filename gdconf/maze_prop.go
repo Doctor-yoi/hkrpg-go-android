@@ -33,7 +33,7 @@ func (g *GameDataConfig) loadMazeProp() {
 	//	info := fmt.Sprintf("open file error: %v", err)
 	//	panic(info)
 	//}
-	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.MazeProps)
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.MazeProp)
 	if err != nil {
 		logger.Error("get MazeProp error")
 		os.Exit(-1)

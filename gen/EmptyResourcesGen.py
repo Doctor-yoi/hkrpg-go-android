@@ -58,26 +58,12 @@ ResourcesFileNameList_ExcelOutput = [
     "TextJoinConfig.json"
 ]
 
-ResourcesFilePath_Base = os.path.abspath("..") + "\\resources"
-ResourcesFilePath_ExcelOutput = ResourcesFilePath_Base + "\\ExcelOutput"
-ResourcesFilePath_Floor = ResourcesFilePath_Base + "\\Config\\LevelOutput\\Floor"
-ResourcesFilePath_Group = ResourcesFilePath_Base + "\\Config\\LevelOutput\\Group"
-
-
-def readFileToB64(filepath: str):
-    with open(filepath, "rb") as file:
-        b64str = base64.b64encode(file.read()).decode()
-    return b64str
-
-
 if __name__ == "__main__":
     print("hkrpg-go resources2go")
     print("author: github@Doctor-yoi")
     print("outFile: $ProjectRoot$/gameData/Resources_b64.go")
-    print("!!!WARNING! DO NOT OPEN IT IN ANY CODE EDITOR!!!")
-    startTime = time.perf_counter()
 
-    goCode = "///    Generate By ResourcesGen.py"
+    goCode = "///    Generate By EmptyResourcesGen.py"
     goCode += "\n///    DO NOT EDIT!!!"
     goCode += "\n///    Generate Time: " + time.asctime(time.localtime())
     goCode += "\npackage gameData"
@@ -86,27 +72,15 @@ if __name__ == "__main__":
     goCode += "\n\nvar ("
     for file in ResourcesFileNameList_ExcelOutput:
         (fileName, fileSuffix) = os.path.splitext(file)
-        filePath = ResourcesFilePath_ExcelOutput + "\\" + file
-        b64Content = readFileToB64(filePath)
-        goLine = "\n    " + fileName + " = \"" + str(b64Content) + "\""
+        goLine = "\n    " + fileName + " = \"" + "\""
         goCode += goLine
     goCode += "\n)"
 
     print("Translate Floor...")
     goCode += "\nvar floorMap map[string]string"
     goCode += "\nfunc FloorMap() map[string]string {"
-    goCode += "\n    if !(floorMap == nil) {"
+    goCode += "\n    if floorMap == nil {"
     goCode += "\n        floorMap = make(map[string]string)"
-    for root, dirs, files in os.walk(ResourcesFilePath_Floor, topdown=True):
-        if root == ResourcesFilePath_Floor:
-            continue
-
-        for file in files:
-            (fileName, fileSuffix) = os.path.splitext(file)
-            filePath = root + "\\" + file
-            b64Content = readFileToB64(filePath)
-            goLine = "\n    floorMap[\"" + file + "\"] = \"" + str(b64Content) + "\""
-            goCode += goLine
     goCode += "\n    }"
     goCode += "\n    return floorMap"
     goCode += "\n}"
@@ -114,26 +88,15 @@ if __name__ == "__main__":
     print("Translate Group...")
     goCode += "\nvar groupMap map[string]string"
     goCode += "\nfunc GroupMap() map[string]string {"
-    goCode += "\n    if !(groupMap == nil) {"
+    goCode += "\n    if groupMap == nil {"
     goCode += "\n        groupMap = make(map[string]string)"
-    for root, dirs, files in os.walk(ResourcesFilePath_Group, topdown=True):
-        if root == ResourcesFilePath_Group:
-            continue
-
-        for file in files:
-            (fileName, fileSuffix) = os.path.splitext(file)
-            filePath = root + "\\" + file
-            b64Content = readFileToB64(filePath)
-            goLine = "\n        groupMap[\"" + file + "\"] = \"" + str(b64Content) + "\""
-            goCode += goLine
     goCode += "\n    }"
     goCode += "\n    return groupMap"
     goCode += "\n}"
 
     print("Saving...")
-    with open(os.path.abspath("..") + "\\gameData\\Resources_b64.go", "w") as goFile:
+    with open(os.path.abspath("..") + "/gameData/Resources_b64.go", "w+") as goFile:
         goFile.write(goCode)
 
-    endTime = time.perf_counter()
-    print('Done in {:.4f}s'.format(endTime - startTime))
+    print('Done.')
     exit(0)

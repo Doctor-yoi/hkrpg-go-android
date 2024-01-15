@@ -24,7 +24,7 @@ func (g *GameDataConfig) loadTextJoinConfig() {
 	//	info := fmt.Sprintf("open file error: %v", err)
 	//	panic(info)
 	//}
-	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.TextJoinConfigs)
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.TextJoinConfig)
 	if err != nil {
 		logger.Error("get TextJoinConfig error")
 		os.Exit(-1)

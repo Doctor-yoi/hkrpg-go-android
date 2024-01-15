@@ -98,7 +98,7 @@ func (g *GameDataConfig) loadGroup() {
 	//	return
 	//}
 
-	files := gameData.GroupList //由于goland无法解析转译以后的gamedata因此在此给出GroupList的类型定义
+	files := gameData.GroupMap() //由于goland无法解析转译以后的gamedata因此在此给出GroupList的类型定义
 	// map[string]string
 	for fileName, fileContent := range files {
 		levelGroup := new(LevelGroup)

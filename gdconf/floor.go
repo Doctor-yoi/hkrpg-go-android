@@ -37,7 +37,7 @@ func (g *GameDataConfig) loadFloor() {
 	//	logger.Error("error LevelOutput/Floor:", err)
 	//	return
 	//}
-	files := gameData.FloorList
+	files := gameData.FloorMap()
 
 	for fileName, fileContent := range files {
 		levelFloor := new(LevelFloor)

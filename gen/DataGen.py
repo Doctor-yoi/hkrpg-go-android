@@ -26,7 +26,7 @@ if __name__ == '__main__':
     for file in GameDataFileNameList:
         print("Translate {}".format(file))
         (fileName, fileSuffix) = os.path.splitext(file)
-        dataFilePath = os.path.abspath('..') + "\\data\\" + file
+        dataFilePath = os.path.abspath('..') + "/data/" + file
         b64Content = readFileToB64(dataFilePath)
         if fileName == "localhost":
             goLine = "\n    " + fileName + "_" + fileSuffix.replace(".", "") + " = \"" + str(b64Content) + "\""
@@ -34,6 +34,6 @@ if __name__ == '__main__':
             goLine = "\n    " + fileName + " = \"" + str(b64Content) + "\""
         goCode += goLine
     goCode += "\n)"
-    with open(os.path.abspath("..") + "\\gameData\\GameData_b64.go", "w") as goFile:
+    with open(os.path.abspath("..") + "/gameData/GameData_b64.go", "w+") as goFile:
         goFile.write(goCode)
     exit(0)

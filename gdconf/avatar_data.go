@@ -33,7 +33,7 @@ func (g *GameDataConfig) loadAvatarData() {
 	//	info := fmt.Sprintf("open file error: %v", err)
 	//	panic(info)
 	//}
-	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.AvatarData)
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.AvatarConfig)
 	if err != nil {
 		logger.Error("get AvatarData error")
 		os.Exit(-1)

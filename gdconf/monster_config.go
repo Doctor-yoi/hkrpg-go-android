@@ -26,7 +26,7 @@ func (g *GameDataConfig) loadMonsterConfig() {
 	//	info := fmt.Sprintf("open file error: %v", err)
 	//	panic(info)
 	//}
-	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.MonsterConfigs)
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.MonsterConfig)
 	if err != nil {
 		logger.Error("get MonsterConfig error")
 		os.Exit(-1)

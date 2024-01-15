@@ -36,7 +36,7 @@ func (g *GameDataConfig) loadSpecialAvatar() {
 	//	info := fmt.Sprintf("open file error: %v", err)
 	//	panic(info)
 	//}
-	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.SpecialAvata)
+	playerElementsFile, err := base64.StdEncoding.DecodeString(gameData.SpecialAvatar)
 	if err != nil {
 		logger.Error("get SpecialAvata error")
 		os.Exit(-1)
