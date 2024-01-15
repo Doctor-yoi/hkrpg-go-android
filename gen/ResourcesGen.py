@@ -94,8 +94,10 @@ if __name__ == "__main__":
     goCode += "\n)"
 
     print("Translate Floor...")
-    goCode += "\n\nfunc FloorList() map[string]string {"
-    goCode += "\n    floorMap = make(map[string]string,0)"
+    goCode += "\nvar floorMap := nil
+    goCode += "\nfunc FloorMap() map[string]string {"
+    goCode += "\n    if !(floorMap == nil) {
+    goCode += "\n        floorMap = make(map[string]string,0)"
     for root, dirs, files in os.walk(ResourcesFilePath_Floor, topdown=True):
         if root == ResourcesFilePath_Floor:
             continue
@@ -106,11 +108,15 @@ if __name__ == "__main__":
             b64Content = readFileToB64(filePath)
             goLine = "\n    floorMap[\"" + file + "\"] = \"" + str(b64Content) + "\""
             goCode += goLine
+    goCode += "\n    }"
+    goCode += "\n    return floorMap"
     goCode += "\n}"
 
     print("Translate Group...")
-    goCode += "\n\nfunc GroupList() map[string]string {"
-    goCode += "\n    groupMap = make(map[string]string,0)"
+    goCode += "\nvar groupMap := nil
+    goCode += "\nfunc GroupMap() map[string]string {"
+    goCode += "\n    if !(groupMap == nil) {
+    goCode += "\n        groupMap = make(map[string]string,0)"
     for root, dirs, files in os.walk(ResourcesFilePath_Group, topdown=True):
         if root == ResourcesFilePath_Group:
             continue
@@ -119,8 +125,10 @@ if __name__ == "__main__":
             (fileName, fileSuffix) = os.path.splitext(file)
             filePath = root + "\\" + file
             b64Content = readFileToB64(filePath)
-            goLine = "\n    groupMap[\"" + file + "\"] = \"" + str(b64Content) + "\""
+            goLine = "\n        groupMap[\"" + file + "\"] = \"" + str(b64Content) + "\""
             goCode += goLine
+    goCode += "\n    }"
+    goCode += "\n    return groupMap
     goCode += "\n}"
 
     print("Saving...")
