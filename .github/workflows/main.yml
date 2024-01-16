@@ -15,6 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Clone repo
+      run: |
+        mkdir C:\hkrpg-go-android
+        cd C:\hkrpg-go-android
+        git clone https://github.com/Doctor-yoi/hkrpg-go-android.git ./
+
     - name: Set up Go
       id: setup-go
       uses: actions/setup-go@v4
@@ -36,6 +42,8 @@ jobs:
 
     - name: Set up gomobile
       run: |
+        cd C:\hkrpg-go-mobile
+        go get golang.org/x/mobile/cmd/gomobile
         go install golang.org/x/mobile/cmd/gomobile
 
     - name: init gomobile
@@ -45,4 +53,6 @@ jobs:
         ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
     - name: build
-      run: ./generateAarPackage.bat
+      run: |
+        cd C:\hkrpg-go-android
+        ./generateAarPackage.bat
