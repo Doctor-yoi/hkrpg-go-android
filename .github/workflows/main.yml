@@ -36,7 +36,7 @@ jobs:
 
     - name: Set up gomobile
       run: |
-        go intall golang.org/x/mobile/cmd/gomobile
+        go install golang.org/x/mobile/cmd/gomobile
 
     - name: init gomobile
       run: |
