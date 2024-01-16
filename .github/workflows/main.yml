@@ -17,7 +17,8 @@ jobs:
 
     - name: test
       run: |
-        for /f %i in ('chdir') do echo %i
+        $test=(chdir)
+        echo test
 
     - name: Clone repo
       run: |
