@@ -10,9 +10,7 @@ import (
 
 type Config struct {
 	LogLevel           string       `json:"LogLevel"`
-	GameDataConfigPath string       `toml:"GameDataConfigPath"`
-	UseDatabase        bool         `json:"UseDatabase"`
-	MysqlDsn           string       `json:"MysqlDsn"`
+	DataBase           *DataBase    `json:"DataBase"`
 	Account            *Account     `json:"Account"`
 	Http               *Http        `json:"Http"`
 	Dispatch           []Dispatch   `json:"Dispatch"`
@@ -20,6 +18,11 @@ type Config struct {
 	GmKey              string       `json:"GmKey"`
 	Email              *email       `json:"Email"`
 	Ec2b               *random.Ec2b `json:"Ec2B"`
+}
+type DataBase struct {
+	StoreUserData bool   `json:"storeUserData"`
+	DbType        string `json:"dbType"`
+	ConnAddr      string `json:"connAddr"`
 }
 type Account struct {
 	AutoCreate bool  `json:"autoCreate"`
@@ -34,9 +37,6 @@ type Dispatch struct {
 type Http struct {
 	Addr        string `json:"addr"`
 	Port        int64  `json:"port"`
-	EnableHttps bool   `json:"enable"`
-	CertFile    string `json:"certFile"`
-	KeyFile     string `json:"keyFile"`
 }
 type Game struct {
 	Addr string `json:"addr"`
@@ -83,9 +83,10 @@ func LoadConfig(configContent string) error {
 
 var DefaultConfig = &Config{
 	LogLevel:           "Error",
-	GameDataConfigPath: "",
-	MysqlDsn:           "",
-	UseDatabase:        false,
+	DataBase: &DataBase{
+		StoreUserData: true,
+		DbType:        "None",
+		ConnAddr:      "",
 	Account: &Account{
 		AutoCreate: true,
 		MaxPlayer:  -1,
@@ -93,13 +94,10 @@ var DefaultConfig = &Config{
 	Http: &Http{
 		Addr:        "127.0.0.1",
 		Port:        8080,
-		EnableHttps: false,
-		CertFile:    "",
-		KeyFile:     "",
 	},
 	Dispatch: []Dispatch{
 		{
-			Name:        "hkrpg-official",
+			Name:        "hkrpg-go",
 			Title:       "os_usa",
 			Type:        "2",
 			DispatchUrl: "http://127.0.0.1:8080/query_gateway_capture",
