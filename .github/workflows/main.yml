@@ -55,4 +55,4 @@ jobs:
     - name: test
       run: |
         cd D:\a\hkrpg-go-android\hkrpg-go-android
-        gomobile bind -target=android hkrpg
+        gomobile bind -target=android -androidapi=28 hkrpg
