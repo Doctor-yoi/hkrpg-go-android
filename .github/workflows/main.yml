@@ -51,10 +51,10 @@ jobs:
         cd D:\a\hkrpg-go-android\hkrpg-go-android\resources
         del README.txt
         git clone https://github.com/Dimbreath/StarRailData.git ./
-
-		- name: test build
-			run: |
-				cd D:\a\hkrpg-go-android\hkrpg-go-android
-				gomobile bind -target=android hkrpg
-			env:
+        
+    - name: test build
+      run: |
+        cd D:\a\hkrpg-go-android\hkrpg-go-android
+        gomobile bind -target=android hkrpg
+	  env:
         ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
